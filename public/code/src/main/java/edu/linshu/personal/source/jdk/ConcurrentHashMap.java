@@ -1,3 +1,8 @@
+package edu.linshu.personal.source.jdk;
+
+
+import edu.linshu.personal.core.unsafe.UnsafeUtils;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
@@ -136,7 +141,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
 
         static {
             try {
-                UNSAFE = sun.misc.Unsafe.getUnsafe();
+                UNSAFE = UnsafeUtils.getUnsafe();
                 Class k = HashEntry.class;
                 nextOffset = UNSAFE.objectFieldOffset
                         (k.getDeclaredField("next"));
@@ -1547,7 +1552,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
     static {
         int ss, ts;
         try {
-            UNSAFE = sun.misc.Unsafe.getUnsafe();
+            UNSAFE = UnsafeUtils.getUnsafe();
             Class tc = HashEntry[].class;
             Class sc = Segment[].class;
             TBASE = UNSAFE.arrayBaseOffset(tc);

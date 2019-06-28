@@ -1,0 +1,15 @@
+/target/
+/out/
+*/log/
+/static/
+/oss/
+!.mvn/wrapper/maven-wrapper.jar
+*.gz
+*.tmp
+/temp
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

@@ -1,1 +1,9 @@
+### Custom ###
 .gitkeep
+/temp
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
