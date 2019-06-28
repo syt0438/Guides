@@ -23,7 +23,7 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 ### 并发
 
 #### 源码分析版
-* [(JDK7) ConcurrentHashMap 源码分析](public/code/java/util/concurrent/(JDK7)ConcurrentHashMap.java)
+* [(JDK7) ConcurrentHashMap 源码分析](public/code/src/main/java/edu/linshu/personal/source/jdk/ConcurrentHashMap_7.java)
 
 #### 脑图版
 
@@ -46,6 +46,8 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 * [Java 性能调优相关](public/images/mind/JVM/Java_Performance.png)
 
 ### GC
+
+#### 脑图版
 
 * [GC 相关知识](public/images/mind/GC/GC.png)
 * [Java 垃圾回收器](public/images/mind/GC/Java_Garbage_Collector.png)

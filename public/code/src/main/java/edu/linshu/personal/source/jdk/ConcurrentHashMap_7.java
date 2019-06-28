@@ -37,7 +37,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @since 1.5
  */
 @SuppressWarnings("all")
-public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
+public class ConcurrentHashMap_7<K, V> extends AbstractMap<K, V>
         implements ConcurrentMap<K, V>, Serializable {
     private static final long serialVersionUID = 7249069246763182397L;
 
@@ -724,8 +724,8 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
      *                                  nonpositive.
      */
     @SuppressWarnings("unchecked")
-    public ConcurrentHashMap(int initialCapacity,
-                             float loadFactor, int concurrencyLevel) {
+    public ConcurrentHashMap_7(int initialCapacity,
+                               float loadFactor, int concurrencyLevel) {
         if (!(loadFactor > 0) || initialCapacity < 0 || concurrencyLevel <= 0)
             throw new IllegalArgumentException();
 
@@ -783,7 +783,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
      *                                  elements is negative or the load factor is nonpositive
      * @since 1.6
      */
-    public ConcurrentHashMap(int initialCapacity, float loadFactor) {
+    public ConcurrentHashMap_7(int initialCapacity, float loadFactor) {
         this(initialCapacity, loadFactor, DEFAULT_CONCURRENCY_LEVEL);
     }
 
@@ -796,7 +796,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
      * @throws IllegalArgumentException if the initial capacity of
      *                                  elements is negative.
      */
-    public ConcurrentHashMap(int initialCapacity) {
+    public ConcurrentHashMap_7(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR, DEFAULT_CONCURRENCY_LEVEL);
     }
 
@@ -804,7 +804,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
      * Creates a new, empty map with a default initial capacity (16),
      * load factor (0.75) and concurrencyLevel (16).
      */
-    public ConcurrentHashMap() {
+    public ConcurrentHashMap_7() {
         this(DEFAULT_INITIAL_CAPACITY, DEFAULT_LOAD_FACTOR, DEFAULT_CONCURRENCY_LEVEL);
     }
 
@@ -816,7 +816,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
      *
      * @param m the map
      */
-    public ConcurrentHashMap(Map<? extends K, ? extends V> m) {
+    public ConcurrentHashMap_7(Map<? extends K, ? extends V> m) {
         this(Math.max((int) (m.size() / DEFAULT_LOAD_FACTOR) + 1,
                 DEFAULT_INITIAL_CAPACITY),
                 DEFAULT_LOAD_FACTOR, DEFAULT_CONCURRENCY_LEVEL);
@@ -1326,7 +1326,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
         public final void remove() {
             if (lastReturned == null)
                 throw new IllegalStateException();
-            ConcurrentHashMap.this.remove(lastReturned.key);
+            ConcurrentHashMap_7.this.remove(lastReturned.key);
             lastReturned = null;
         }
     }
@@ -1377,7 +1377,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
         public V setValue(V value) {
             if (value == null) throw new NullPointerException();
             V v = super.setValue(value);
-            ConcurrentHashMap.this.put(getKey(), value);
+            ConcurrentHashMap_7.this.put(getKey(), value);
             return v;
         }
     }
@@ -1397,23 +1397,23 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
         }
 
         public int size() {
-            return ConcurrentHashMap.this.size();
+            return ConcurrentHashMap_7.this.size();
         }
 
         public boolean isEmpty() {
-            return ConcurrentHashMap.this.isEmpty();
+            return ConcurrentHashMap_7.this.isEmpty();
         }
 
         public boolean contains(Object o) {
-            return ConcurrentHashMap.this.containsKey(o);
+            return ConcurrentHashMap_7.this.containsKey(o);
         }
 
         public boolean remove(Object o) {
-            return ConcurrentHashMap.this.remove(o) != null;
+            return ConcurrentHashMap_7.this.remove(o) != null;
         }
 
         public void clear() {
-            ConcurrentHashMap.this.clear();
+            ConcurrentHashMap_7.this.clear();
         }
     }
 
@@ -1423,19 +1423,19 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
         }
 
         public int size() {
-            return ConcurrentHashMap.this.size();
+            return ConcurrentHashMap_7.this.size();
         }
 
         public boolean isEmpty() {
-            return ConcurrentHashMap.this.isEmpty();
+            return ConcurrentHashMap_7.this.isEmpty();
         }
 
         public boolean contains(Object o) {
-            return ConcurrentHashMap.this.containsValue(o);
+            return ConcurrentHashMap_7.this.containsValue(o);
         }
 
         public void clear() {
-            ConcurrentHashMap.this.clear();
+            ConcurrentHashMap_7.this.clear();
         }
     }
 
@@ -1448,7 +1448,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
             if (!(o instanceof Map.Entry))
                 return false;
             Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
-            V v = ConcurrentHashMap.this.get(e.getKey());
+            V v = ConcurrentHashMap_7.this.get(e.getKey());
             return v != null && v.equals(e.getValue());
         }
 
@@ -1456,19 +1456,19 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
             if (!(o instanceof Map.Entry))
                 return false;
             Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
-            return ConcurrentHashMap.this.remove(e.getKey(), e.getValue());
+            return ConcurrentHashMap_7.this.remove(e.getKey(), e.getValue());
         }
 
         public int size() {
-            return ConcurrentHashMap.this.size();
+            return ConcurrentHashMap_7.this.size();
         }
 
         public boolean isEmpty() {
-            return ConcurrentHashMap.this.isEmpty();
+            return ConcurrentHashMap_7.this.isEmpty();
         }
 
         public void clear() {
-            ConcurrentHashMap.this.clear();
+            ConcurrentHashMap_7.this.clear();
         }
     }
 

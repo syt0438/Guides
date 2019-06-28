@@ -2,7 +2,7 @@ package edu.linshu.personal.test.concurrent;
 
 import edu.linshu.personal.core.concurrent.locks.CountDownLatch;
 import edu.linshu.personal.core.concurrent.locks.ReentrantLock;
-import edu.linshu.personal.source.jdk.ConcurrentHashMap;
+import edu.linshu.personal.source.jdk.ConcurrentHashMap_7;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -22,7 +22,7 @@ import static java.lang.Thread.currentThread;
 @SuppressWarnings("all")
 public class ConcurrentHashMapTest {
 
-    private final static Map<String, String> data = new ConcurrentHashMap<>();
+    private final static Map<String, String> data = new ConcurrentHashMap_7<>();
 
     @Test
     public void test() throws InterruptedException {
