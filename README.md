@@ -38,11 +38,10 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 
 #### 脑图版
 
-* [类加载器](public/images/mind/JVM/ClassLoader.png)
-* [类加载过程](public/images/mind/JVM/Class_Loading_Process.png)
-* [Java 对象模型](public/images/mind/JVM/Java_Object_Model.png)
+* [类加载器](https://www.processon.com/view/link/5d178234e4b0a916e8f864d7)
+* [Java 对象模型](https://www.processon.com/view/link/5d17a023e4b0cd6dd6dfd8ec)
 * [JVM 运行时内存区域](public/images/mind/JVM/Java_Run-Time_Data_Areas.png)
-* [JIT 编译器](public/images/mind/JVM/JIT.png)
+* [JIT 编译器](https://www.processon.com/view/link/5d1779a5e4b0cd6dd6dfcbb2)
 * [Java 性能调优相关](public/images/mind/JVM/Java_Performance.png)
 
 ### GC
