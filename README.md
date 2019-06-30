@@ -40,13 +40,13 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 
 * [类加载器](https://www.processon.com/view/link/5d178234e4b0a916e8f864d7)
 * [Java 对象模型](https://www.processon.com/view/link/5d17a023e4b0cd6dd6dfd8ec)
-* [JVM 运行时内存区域](public/images/mind/JVM/Java_Run-Time_Data_Areas.png)
+* [JVM 运行时数据区](https://www.processon.com/view/link/5d1886e4e4b0beaf6b9f0733)
 * [JIT 编译器](https://www.processon.com/view/link/5d1779a5e4b0cd6dd6dfcbb2)
-* [Java 性能调优相关](public/images/mind/JVM/Java_Performance.png)
+* [Java 性能调优相关](https://www.processon.com/view/link/5d188de2e4b0e16a8ecb2b44)
 
 ### GC
 
 #### 脑图版
 
-* [GC 相关知识](public/images/mind/GC/GC.png)
-* [Java 垃圾回收器](public/images/mind/GC/Java_Garbage_Collector.png)
+* [GC 相关知识](https://www.processon.com/view/link/5d18a2f9e4b0cd6dd6e048fa)
+* [Java 垃圾回收器](https://www.processon.com/view/link/5d18d396e4b0a7e304f95a63)
