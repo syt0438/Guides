@@ -27,7 +27,7 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 
 #### 脑图版
 
-* [线程安全和线程通讯机制](https://www.processon.com/view/link/5d18de92e4b02f3e4dae0d0d)
+* [多线程基础知识及线程安全和线程通讯机制](https://www.processon.com/view/link/5d18de92e4b02f3e4dae0d0d)
 * [CAS 机制和锁的相关知识点](public/images/mind/Concurrent/CAS_And_Lock.png)
 * [AQS 原理以及 AQS 同步组件总结](public/images/mind/Concurrent/AQS.png)
 * [Executor 线程池](public/images/mind/Concurrent/Executor_Thread_Pool.png)
