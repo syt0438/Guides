@@ -28,11 +28,11 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 #### 脑图版
 
 * [多线程基础知识及线程安全和线程通讯机制](https://www.processon.com/view/link/5d18de92e4b02f3e4dae0d0d)
-* [CAS 机制和锁的相关知识点](public/images/mind/Concurrent/CAS_And_Lock.png)
-* [AQS 原理以及 AQS 同步组件总结](public/images/mind/Concurrent/AQS.png)
-* [Executor 线程池](public/images/mind/Concurrent/Executor_Thread_Pool.png)
-* [Java 内存模型](public/images/mind/Concurrent/Java_Memory_Model.png)
-* [CPU 性能优化策略](public/images/mind/Concurrent/CPU_Performance.png)
+* [CAS 机制和锁的相关知识点](https://www.processon.com/view/link/5d195cefe4b0e16a8ecb74e2)
+* [AQS 队列同步器](https://www.processon.com/view/link/5d195ca2e4b0beaf6b9f53dd)
+* [Executor 线程池](https://www.processon.com/view/link/5d195da5e4b0fbffddf9f6af)
+* [Java 内存模型](https://www.processon.com/view/link/5d195f05e4b04452ec7f629a)
+* [CPU 性能优化策略](https://www.processon.com/view/link/5d196082e4b014412aa8bbb7)
 
 ### JVM
 
@@ -45,6 +45,15 @@ Java 知识体系学习与总结，提供脑图和文档版本。
 * [Java 性能调优相关](https://www.processon.com/view/link/5d188de2e4b0e16a8ecb2b44)
 
 ### GC
+
+### 网络相关
+
+#### 脑图版
+
+* [NIO](https://www.processon.com/view/link/5d178234e4b0a916e8f864d7)
+* [TCP 和 UDP 相关内容](https://www.processon.com/view/link/5d19624be4b04452ec7f66cb)
+* [Netty 相关内容](https://www.processon.com/view/link/5d1962dce4b02f3e4dae26bb)
+
 
 #### 脑图版
 
