@@ -1,9 +1,9 @@
 package edu.linshu.personal.test.net.nio;
 
-import edu.linshu.personal.core.net.IServerSocket;
-import edu.linshu.personal.core.net.MainReactorGroup;
-import edu.linshu.personal.core.net.SubReactorGroup;
-import edu.linshu.personal.core.net.nio.NIOServerSocket;
+import edu.linshu.personal.core.net.jdk.IServerSocket;
+import edu.linshu.personal.core.net.jdk.nio.reactor.MainReactorGroup;
+import edu.linshu.personal.core.net.jdk.nio.reactor.SubReactorGroup;
+import edu.linshu.personal.core.net.jdk.nio.NIOServerSocket;
 import lombok.extern.java.Log;
 import org.junit.Test;
 

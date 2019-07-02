@@ -1,8 +1,8 @@
 package edu.linshu.personal.test.net.nio;
 
-import edu.linshu.personal.core.net.IClientSocket;
-import edu.linshu.personal.core.net.nio.ISelector;
-import edu.linshu.personal.core.net.nio.NIOServerSocket;
+import edu.linshu.personal.core.net.jdk.IClientSocket;
+import edu.linshu.personal.core.net.jdk.nio.ISelector;
+import edu.linshu.personal.core.net.jdk.nio.NIOServerSocket;
 import lombok.extern.java.Log;
 import org.junit.Test;
 

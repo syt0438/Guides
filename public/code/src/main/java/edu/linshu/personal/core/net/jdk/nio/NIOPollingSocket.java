@@ -1,10 +1,9 @@
-package edu.linshu.personal.core.net.nio;
+package edu.linshu.personal.core.net.jdk.nio;
 
-import edu.linshu.personal.core.net.IClientSocket;
+import edu.linshu.personal.core.net.jdk.IClientSocket;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.SocketException;
@@ -22,16 +21,16 @@ import java.util.concurrent.TimeUnit;
  * @date 2019/06/26 13:35
  */
 @Log
-public class NIOSocket implements IClientSocket, ISelector {
+public class NIOPollingSocket implements IClientSocket, ISelector {
     private SocketChannel socket;
 
     private long connectionTimeout;
 
-    public NIOSocket() throws IOException {
+    public NIOPollingSocket() throws IOException {
         socket = createSocket();
     }
 
-    public NIOSocket(SocketChannel client) throws IOException {
+    public NIOPollingSocket(SocketChannel client) throws IOException {
         socket = client;
         client.configureBlocking(false);
     }
@@ -57,18 +56,38 @@ public class NIOSocket implements IClientSocket, ISelector {
             return false;
         }
 
-        return socket.connect(new InetSocketAddress(ip, port));
+        long startTime = System.nanoTime();
+        long connectionTime = 0L;
+        boolean connected = false;
+
+        while (!connected && connectionTime <= connectionTimeout) {
+            try {
+                connected = socket.connect(new InetSocketAddress(ip, port));
+
+                while (!connected) {
+                    Thread.yield();
+
+                    connected = socket.finishConnect();
+                }
+
+            } catch (Exception e) {
+                socket = createSocket();
+                log.info("[" + System.nanoTime() + "]: 连接失败");
+            } finally {
+                connectionTime = System.nanoTime() - startTime;
+            }
+        }
+
+        if (connected) {
+            return true;
+        }
+
+        throw new IOException("连接超时");
     }
 
     @Override
-    public boolean finishConnection() throws IOException {
-        try {
-            return socket.finishConnect();
-        } catch (ConnectException e) {
-            log.info("连接异常： " + e.getMessage());
-
-            return false;
-        }
+    public boolean finishConnection() {
+        return socket.isConnected();
     }
 
     @Override
@@ -157,11 +176,19 @@ public class NIOSocket implements IClientSocket, ISelector {
 
     @Override
     public SelectionKey register(Selector selector, int ops, Object attachment) throws ClosedChannelException {
+        if (isClosed()) {
+            throw new IllegalStateException();
+        }
+
         return socket.register(selector, ops, attachment);
     }
 
     @Override
     public SelectionKey register(Selector selector, int ops) throws ClosedChannelException {
+        if (isClosed()) {
+            throw new IllegalStateException();
+        }
+
         return socket.register(selector, ops);
     }
 }

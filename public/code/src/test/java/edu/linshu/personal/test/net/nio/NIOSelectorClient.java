@@ -1,8 +1,8 @@
 package edu.linshu.personal.test.net.nio;
 
-import edu.linshu.personal.core.net.IClientSocket;
-import edu.linshu.personal.core.net.nio.ISelector;
-import edu.linshu.personal.core.net.nio.NIOSocket;
+import edu.linshu.personal.core.net.jdk.IClientSocket;
+import edu.linshu.personal.core.net.jdk.nio.ISelector;
+import edu.linshu.personal.core.net.jdk.nio.NIOSocket;
 import lombok.extern.java.Log;
 import org.junit.Test;
 
@@ -25,14 +25,18 @@ import java.util.Set;
 public class NIOSelectorClient {
     @Test
     public void test() throws IOException, InterruptedException {
-        sendRequest();
+        sendRequest("苦难与不幸是智者的晋升之梯，信徒的洗礼之水，弱者的无底深渊", true);
     }
 
     static void sendRequest() throws IOException, InterruptedException {
-        sendRequest(null);
+        sendRequest(null, false);
     }
 
     static void sendRequest(String msg) throws IOException, InterruptedException {
+        sendRequest(msg, false);
+    }
+
+    static void sendRequest(String msg, boolean withoutResponse) throws IOException, InterruptedException {
         Selector selector = Selector.open();
 
         IClientSocket client = new NIOSocket();
@@ -52,7 +56,7 @@ public class NIOSelectorClient {
                 SelectionKey key = keyIterator.next();
                 keyIterator.remove();
 
-                if (key.isConnectable()) {
+                if (key.isValid() && key.isConnectable()) {
                     if (!client.finishConnection()) {
                         continue;
                     }
@@ -62,22 +66,31 @@ public class NIOSelectorClient {
                     clientSelector.register(selector, SelectionKey.OP_WRITE);
                 }
 
-                if (key.isWritable()) {
-                    if (Objects.isNull(msg)) {
-                        log.info("等待接收用户输入信息：");
-                        Scanner scanner = new Scanner(System.in);
-                        msg = scanner.nextLine();
-                        scanner.close();
+                if (key.isValid() && key.isWritable()) {
+                    try {
+                        if (Objects.isNull(msg)) {
+                            log.info("等待接收用户输入信息：");
+                            Scanner scanner = new Scanner(System.in);
+                            msg = scanner.nextLine();
+                            scanner.close();
+                        }
+
+                        log.info("准备发送用户消息：" + msg);
+                        client.sendMsg(msg, StandardCharsets.UTF_8);
+                        log.info("发送用户消息成功");
+
+                        if (!withoutResponse) {
+                            clientSelector.register(selector, SelectionKey.OP_READ);
+                        }
+                    } finally {
+                        if (withoutResponse) {
+                            key.cancel();
+                            client.close();
+                        }
                     }
-
-                    log.info("准备发送用户消息：" + msg);
-                    client.sendMsg(msg, StandardCharsets.UTF_8);
-                    log.info("发送用户消息成功");
-
-                    clientSelector.register(selector, SelectionKey.OP_READ);
                 }
 
-                if (key.isReadable()) {
+                if (key.isValid() && key.isReadable()) {
                     try {
                         log.info("等待接收服务器信息: ");
                         String readMsg = client.readMsg(StandardCharsets.UTF_8);

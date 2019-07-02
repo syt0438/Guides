@@ -1,6 +1,6 @@
-package edu.linshu.personal.core.net;
+package edu.linshu.personal.core.net.jdk;
 
-import edu.linshu.personal.core.net.nio.ISelector;
+import edu.linshu.personal.core.net.jdk.nio.ISelector;
 
 import java.io.IOException;
 import java.net.SocketAddress;

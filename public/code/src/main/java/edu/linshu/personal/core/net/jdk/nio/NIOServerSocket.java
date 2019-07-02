@@ -1,14 +1,13 @@
-package edu.linshu.personal.core.net.nio;
+package edu.linshu.personal.core.net.jdk.nio;
 
-import edu.linshu.personal.core.net.IClientSocket;
-import edu.linshu.personal.core.net.IServerSocket;
+import edu.linshu.personal.core.net.jdk.IClientSocket;
+import edu.linshu.personal.core.net.jdk.IServerSocket;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.SocketException;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -16,11 +15,11 @@ import java.util.concurrent.TimeUnit;
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/06/26 19:15
  */
-public class NIOServerPollingSocket implements IServerSocket {
+public class NIOServerSocket implements IServerSocket, ISelector {
 
     private final ServerSocketChannel serverSocket;
 
-    public NIOServerPollingSocket() {
+    public NIOServerSocket() {
         try {
             this.serverSocket = ServerSocketChannel.open();
             this.serverSocket.configureBlocking(false);
@@ -44,13 +43,31 @@ public class NIOServerPollingSocket implements IServerSocket {
             throw new IllegalStateException();
         }
 
-        SocketChannel client = null;
+        SocketChannel client = serverSocket.accept();
 
-        while (Objects.isNull(client)) {
-            client = serverSocket.accept();
+        if (Objects.isNull(client)) {
+            return null;
         }
 
-        return new NIOPollingSocket(client);
+        return new NIOSocket(client);
+    }
+
+    @Override
+    public SelectionKey register(Selector selector, int ops, Object attachment) throws ClosedChannelException {
+        if (isClosed()) {
+            throw new IllegalStateException();
+        }
+
+        return serverSocket.register(selector, ops, attachment);
+    }
+
+    @Override
+    public SelectionKey register(Selector selector, int ops) throws ClosedChannelException {
+        if (isClosed()) {
+            throw new IllegalStateException();
+        }
+
+        return serverSocket.register(selector, ops);
     }
 
     @Override
@@ -61,7 +78,7 @@ public class NIOServerPollingSocket implements IServerSocket {
     @Override
     public void close() throws IOException {
         if (isClosed()) {
-            throw new IllegalStateException();
+            return;
         }
 
         serverSocket.close();

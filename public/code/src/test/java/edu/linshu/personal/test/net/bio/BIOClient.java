@@ -1,7 +1,7 @@
 package edu.linshu.personal.test.net.bio;
 
-import edu.linshu.personal.core.net.IClientSocket;
-import edu.linshu.personal.core.net.bio.BIOSocket;
+import edu.linshu.personal.core.net.jdk.IClientSocket;
+import edu.linshu.personal.core.net.jdk.bio.BIOSocket;
 import lombok.extern.java.Log;
 import org.junit.Test;
 

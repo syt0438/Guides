@@ -1,6 +1,6 @@
-package edu.linshu.personal.core.net.bio;
+package edu.linshu.personal.core.net.jdk.bio;
 
-import edu.linshu.personal.core.net.IClientSocket;
+import edu.linshu.personal.core.net.jdk.IClientSocket;
 import lombok.extern.java.Log;
 
 import java.io.BufferedInputStream;
