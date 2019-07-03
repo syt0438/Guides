@@ -19,7 +19,7 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf byteBuf = (ByteBuf) msg;
 
-        log.info("客户端 [" + ctx.channel().remoteAddress() + "] 入站信息：\r\n" + byteBuf.toString(StandardCharsets.UTF_8));
+        log.info("客户端 [" + ctx.channel().remoteAddress() + "] 入站消息：\r\n" + byteBuf.toString(StandardCharsets.UTF_8));
 
         byteBuf.release();
     }
