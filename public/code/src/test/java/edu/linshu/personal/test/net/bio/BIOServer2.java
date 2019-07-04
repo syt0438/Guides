@@ -3,7 +3,7 @@ package edu.linshu.personal.test.net.bio;
 import edu.linshu.personal.core.net.jdk.IClientSocket;
 import edu.linshu.personal.core.net.jdk.IServerSocket;
 import edu.linshu.personal.core.net.jdk.bio.BIOServerSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
  * @date 2019/06/26 7:09
  */
 @SuppressWarnings("all")
-@Log
+@Log4j2
 public class BIOServer2 {
 
     private static final ExecutorService executor = Executors.newFixedThreadPool(3);

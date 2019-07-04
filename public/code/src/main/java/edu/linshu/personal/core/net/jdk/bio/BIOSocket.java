@@ -1,7 +1,7 @@
 package edu.linshu.personal.core.net.jdk.bio;
 
 import edu.linshu.personal.core.net.jdk.IClientSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/06/21 14:19
  */
-@Log
+@Log4j2
 public class BIOSocket implements IClientSocket {
     private Socket socket;
     private long connectionTimeout;

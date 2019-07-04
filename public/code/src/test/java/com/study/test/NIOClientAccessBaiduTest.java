@@ -1,6 +1,6 @@
 package com.study.test;
 
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019/06/26 22:06
  */
 @SuppressWarnings("all")
-@Log
+@Log4j2
 public class NIOClientAccessBaiduTest {
     @Test
     public void test() throws IOException, InterruptedException {
@@ -87,7 +87,7 @@ public class NIOClientAccessBaiduTest {
                         handleTask(readMsg);
 
                     } catch (Exception e) {
-                        log.severe("处理信息出错：" + client.getRemoteSocketAddress());
+                        log.error("处理信息出错：" + client.getRemoteSocketAddress());
                     } finally {
                         key.cancel();
                         client.close();

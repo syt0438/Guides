@@ -3,7 +3,7 @@ package edu.linshu.personal.test.net.nio;
 import edu.linshu.personal.core.net.jdk.IClientSocket;
 import edu.linshu.personal.core.net.jdk.nio.ISelector;
 import edu.linshu.personal.core.net.jdk.nio.NIOSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -21,11 +21,11 @@ import java.util.Set;
  * @date 2019/06/26 22:06
  */
 @SuppressWarnings("all")
-@Log
+@Log4j2
 public class NIOSelectorClient {
     @Test
     public void test() throws IOException, InterruptedException {
-        sendRequest("苦难与不幸是智者的晋升之梯，信徒的洗礼之水，弱者的无底深渊", true);
+        sendRequest("苦难与不幸是智者的晋升之梯，信徒的洗礼之水，弱者的无底深渊", false);
     }
 
     static void sendRequest() throws IOException, InterruptedException {

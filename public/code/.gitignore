@@ -1,6 +1,7 @@
 /target/
 /out/
-*/log/
+**/log/
+**/logs/
 /static/
 /oss/
 !.mvn/wrapper/maven-wrapper.jar

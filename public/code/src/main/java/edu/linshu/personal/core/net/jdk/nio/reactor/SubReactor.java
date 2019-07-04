@@ -1,7 +1,7 @@
 package edu.linshu.personal.core.net.jdk.nio.reactor;
 
 import edu.linshu.personal.core.net.jdk.IClientSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
@@ -23,7 +23,7 @@ import static java.nio.channels.SelectionKey.OP_READ;
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/06/27 11:04
  */
-@Log
+@Log4j2
 public class SubReactor implements IReactor {
 
     private static final ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());

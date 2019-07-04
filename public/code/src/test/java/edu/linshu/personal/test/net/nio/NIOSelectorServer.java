@@ -3,7 +3,7 @@ package edu.linshu.personal.test.net.nio;
 import edu.linshu.personal.core.net.jdk.IClientSocket;
 import edu.linshu.personal.core.net.jdk.nio.ISelector;
 import edu.linshu.personal.core.net.jdk.nio.NIOServerSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.Set;
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/06/26 20:58
  */
-@Log
+@Log4j2
 public class NIOSelectorServer {
     @Test
     public void test() throws IOException {

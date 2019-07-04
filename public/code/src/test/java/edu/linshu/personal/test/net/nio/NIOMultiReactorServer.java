@@ -1,10 +1,10 @@
 package edu.linshu.personal.test.net.nio;
 
 import edu.linshu.personal.core.net.jdk.IServerSocket;
+import edu.linshu.personal.core.net.jdk.nio.NIOServerSocket;
 import edu.linshu.personal.core.net.jdk.nio.reactor.MainReactorGroup;
 import edu.linshu.personal.core.net.jdk.nio.reactor.SubReactorGroup;
-import edu.linshu.personal.core.net.jdk.nio.NIOServerSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/06/27 9:45
  */
-@Log
+@Log4j2
 public class NIOMultiReactorServer {
 
     @Test

@@ -2,7 +2,7 @@ package edu.linshu.personal.core.net.jdk.nio.reactor;
 
 import edu.linshu.personal.core.net.jdk.IClientSocket;
 import edu.linshu.personal.core.net.jdk.IServerSocket;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
@@ -17,7 +17,7 @@ import java.util.Set;
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/06/27 9:53
  */
-@Log
+@Log4j2
 public class MainReactor implements IReactor {
     private final Selector selector;
     private final IServerSocket socket;
