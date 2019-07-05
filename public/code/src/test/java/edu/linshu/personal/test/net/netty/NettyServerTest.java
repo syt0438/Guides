@@ -1,6 +1,7 @@
 package edu.linshu.personal.test.net.netty;
 
 import edu.linshu.personal.core.net.netty.NettyServer;
+import edu.linshu.personal.core.net.netty.encoder.TimeEncoder;
 import edu.linshu.personal.core.net.netty.handlers.DiscardServerHandler;
 import edu.linshu.personal.core.net.netty.handlers.EchoServerHandler;
 import edu.linshu.personal.core.net.netty.handlers.TimeServerHandler;
@@ -14,7 +15,7 @@ public class NettyServerTest {
 
     @Test
     public void timeServerTest() throws InterruptedException {
-        new NettyServer(55555).run(new TimeServerHandler());
+        new NettyServer(55555).run(new TimeServerHandler(), new TimeEncoder());
     }
 
     @Test
