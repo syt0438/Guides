@@ -6,6 +6,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.Objects;
+import java.util.function.Consumer;
+
 /**
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/07/04 10:13
@@ -21,6 +24,10 @@ public class NettyClient {
     }
 
     public void run(ChannelHandler... handlers) throws InterruptedException {
+        run(null, handlers);
+    }
+
+    public void run(Consumer<ChannelFuture> handler, ChannelHandler... handlers) throws InterruptedException {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
@@ -36,7 +43,12 @@ public class NettyClient {
             });
 
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-            channelFuture.channel().closeFuture().sync();
+
+            if (Objects.nonNull(handler)) {
+                handler.accept(channelFuture);
+            } else {
+                channelFuture.channel().closeFuture().sync();
+            }
         } finally {
             workerGroup.shutdownGracefully();
         }

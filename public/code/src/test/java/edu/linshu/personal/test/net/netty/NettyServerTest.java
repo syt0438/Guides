@@ -1,6 +1,7 @@
 package edu.linshu.personal.test.net.netty;
 
 import edu.linshu.personal.core.net.netty.NettyServer;
+import edu.linshu.personal.core.net.netty.decoders.CustomProtocolDecoder;
 import edu.linshu.personal.core.net.netty.encoders.TimeEncoder;
 import edu.linshu.personal.core.net.netty.handlers.*;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
@@ -18,6 +19,16 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * @date 2019/07/02 13:44
  */
 public class NettyServerTest {
+
+    @Test
+    public void customProtocolServer() throws InterruptedException {
+        int messageLimit = 200;
+
+        new NettyServer(55555).run(
+                new CustomProtocolDecoder(messageLimit),
+                new CustomProtocolServerHandler()
+        );
+    }
 
     @Test
     public void fileServer() throws InterruptedException {
