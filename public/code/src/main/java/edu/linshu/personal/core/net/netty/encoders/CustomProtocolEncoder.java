@@ -24,6 +24,7 @@ public class CustomProtocolEncoder extends MessageToByteEncoder<String> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, String msg, ByteBuf out) throws Exception {
+        msg = msg.replaceAll("[\r\n\t\b]", msg);
         byte[] msgBytes = msg.getBytes(UTF_8);
         int msgBytesLength = msgBytes.length;
 

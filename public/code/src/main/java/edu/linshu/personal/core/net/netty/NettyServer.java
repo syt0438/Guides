@@ -8,6 +8,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 /**
  * @author Song Yu Tao 745698872@qq.com
  * @date 2019/07/02 11:09
@@ -20,7 +23,7 @@ public class NettyServer {
         this.port = port;
     }
 
-    public void run(ChannelHandler... handlers) throws InterruptedException {
+    public void run(Supplier<List<ChannelHandler>> handlersSupplier) throws InterruptedException {
         EventLoopGroup boseGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -32,7 +35,9 @@ public class NettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(handlers);
+                            ChannelPipeline pipeline = ch.pipeline();
+
+                            handlersSupplier.get().forEach(pipeline::addLast);
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)

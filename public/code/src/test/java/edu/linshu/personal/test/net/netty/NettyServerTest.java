@@ -10,7 +10,10 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.stream.ChunkedWriteHandler;
+import io.netty.util.CharsetUtil;
 import org.junit.Test;
+
+import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -25,46 +28,54 @@ public class NettyServerTest {
         int messageLimit = 200;
 
         new NettyServer(55555).run(
-                new CustomProtocolDecoder(messageLimit),
-                new CustomProtocolServerHandler()
+                () -> List.of(
+                        new CustomProtocolDecoder(messageLimit),
+                        new CustomProtocolServerHandler()
+                )
         );
     }
 
     @Test
     public void fileServer() throws InterruptedException {
         new NettyServer(55555).run(
-                new StringEncoder(UTF_8),
-                new LineBasedFrameDecoder(8192),
-                new StringDecoder(UTF_8),
-                new ChunkedWriteHandler(),
-                new FileServerHandler()
+                () -> List.of(
+                        new StringEncoder(UTF_8),
+                        new LineBasedFrameDecoder(8192),
+                        new StringDecoder(UTF_8),
+                        new ChunkedWriteHandler(),
+                        new FileServerHandler()
+                )
         );
     }
 
     @Test
     public void telnetServer() throws Exception {
         new NettyServer(55555).run(
-                new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()),
-                new StringDecoder(UTF_8),
-                new StringEncoder(UTF_8),
-                new TelnetServerHandler()
+                () -> List.of(
+                        new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()),
+                        new StringDecoder(UTF_8),
+                        new StringEncoder(UTF_8),
+                        new TelnetServerHandler()
+                )
         );
 
     }
 
     @Test
     public void timeServerTest() throws InterruptedException {
-        new NettyServer(55555).run(new TimeEncoder(), new TimeServerHandler());
+        new NettyServer(55555).run(() -> List.of(
+                new TimeEncoder(), new TimeServerHandler()
+        ));
     }
 
     @Test
     public void echoServerTest() throws InterruptedException {
-        new NettyServer(55555).run(new EchoServerHandler());
+        new NettyServer(55555).run(() -> List.of(new EchoServerHandler()));
     }
 
     @Test
     public void discardServerTest() throws InterruptedException {
-        new NettyServer(55555).run(new DiscardServerHandler());
+        new NettyServer(55555).run(() -> List.of(new DiscardServerHandler()));
     }
 
 }

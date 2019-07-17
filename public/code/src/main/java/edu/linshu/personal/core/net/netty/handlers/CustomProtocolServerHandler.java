@@ -16,4 +16,13 @@ public class CustomProtocolServerHandler extends SimpleChannelInboundHandler<Cha
     protected void channelRead0(ChannelHandlerContext ctx, CharSequence msg) throws Exception {
         log.info("\n读取到客户端 {} 消息: \n{}\n", ctx.channel().remoteAddress(), msg);
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        log.error("ERR: {}\n", cause.getMessage());
+
+        if (ctx.channel().isActive()) {
+            ctx.close();
+        }
+    }
 }

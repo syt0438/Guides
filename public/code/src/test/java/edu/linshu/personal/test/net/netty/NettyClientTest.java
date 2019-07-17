@@ -5,6 +5,7 @@ import edu.linshu.personal.core.net.netty.decoders.TimeDecoder;
 import edu.linshu.personal.core.net.netty.encoders.CustomProtocolEncoder;
 import edu.linshu.personal.core.net.netty.handlers.TimeClientHandler;
 import io.netty.channel.ChannelFuture;
+import io.netty.util.CharsetUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class NettyClientTest {
                         (ch) -> {
                             try {
                                 ChannelFuture lastWriteFuture;
-                                Scanner scanner = new Scanner(System.in);
+                                Scanner scanner = new Scanner(System.in, CharsetUtil.UTF_8.name());
 
                                 for (; ; ) {
                                     try {

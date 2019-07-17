@@ -2,7 +2,6 @@ package edu.linshu.personal.core.net.netty.decoders;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.util.ReferenceCountUtil;
@@ -87,6 +86,15 @@ public class CustomProtocolDecoder extends ByteToMessageDecoder {
             log.info("客户端 {} 写入未解析 {} 字节到未解析缓冲区\n", remoteAddress, unresolvedBytes);
         } finally {
             ReferenceCountUtil.release(decodeBuf);
+        }
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        log.error("ERR: {}\n", new String(cause.getMessage().getBytes("GBK"), UTF_8));
+
+        if (ctx.channel().isActive()) {
+            ctx.close();
         }
     }
 }
